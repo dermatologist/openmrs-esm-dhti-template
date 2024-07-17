@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './dhti-template.scss';
+import styles from './dhti.scss';
 import handleBundle from '../hooks/useBundle';
 
 const Dhti: React.FC = () => {
@@ -35,7 +35,8 @@ const Dhti: React.FC = () => {
         </ul>
         <div>
           <h4>Submit to LangServe</h4>
-          <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+          {/* <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} /> */}
+          <textarea value={newMessage} onChange={(e) => setNewMessage(e.target.value)} /><br />
           <button onClick={handleSendMessage}>Submit</button>
         </div>
       </div>
