@@ -1,16 +1,8 @@
 
-# OpenMRS ESM DHTI Template App
+# DHTI Conch Template
 
 * [DHTI](https://github.com/dermatologist/dhti) Conch template
 * WIP
-
-This repository provides a starting point for creating your own
-[OpenMRS Microfrontend](https://wiki.openmrs.org/display/projects/OpenMRS+3.0%3A+A+Frontend+Framework+that+enables+collaboration+and+better+User+Experience).
-
-For more information, please see the
-[OpenMRS Frontend Developer Documentation](https://o3-docs.openmrs.org/#/).
-
-In particular, the [Setup](https://o3-docs.openmrs.org/docs/frontend-modules/setup) section can help you get started developing microfrontends in general. The [Creating a microfrontend](https://o3-docs.openmrs.org/docs/recipes/create-a-frontend-module) section provides information about how to use this repository to create your own microfrontend.
 
 ## Running this code
 
@@ -41,7 +33,6 @@ should open with the OpenMRS 3 application. Log in and then navigate to `/openmr
 
 At this point, you should be able to write your first page as a React application.
 
-Check out the [Medication dispensing app](https://github.com/openmrs/openmrs-esm-dispensing-app) for an example of a non-trivial app built using the Template.
 
 ## Integrating it into your application
 
