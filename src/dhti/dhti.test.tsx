@@ -7,12 +7,12 @@ import Dhti from './dhti.component';
 const mockUseConfig = useConfig as jest.Mock;
 
 it('displays the expected default text', () => {
-  const config: Config = { casualGreeting: false, whoToGreet: ['World'] };
-  mockUseConfig.mockReturnValue(config);
+  // const config: Config = { casualGreeting: false, whoToGreet: ['World'] };
+  // mockUseConfig.mockReturnValue(config);
 
   render(<Dhti />);
 
-  expect(screen.getByRole('heading', { name: /patient search/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /Submit to LangServe/i })).toBeInTheDocument();
 });
 
 

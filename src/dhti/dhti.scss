@@ -9,6 +9,28 @@
   }
 }
 
+.button {
+  height: 4rem;
+  display: flex;
+  align-content: flex-start;
+  align-items: baseline;
+  min-width: 50%;
+}
+
+.textarea {
+  border: none;
+  @extend .bodyLong01;
+  text-align: left;
+
+  textarea {
+    border-bottom: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 .greeting {
   text-transform: capitalize;
 }
