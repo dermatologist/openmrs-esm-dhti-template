@@ -101,5 +101,5 @@
     "packages/**/src/**/*.{ts,tsx}": "eslint --cache --fix --max-warnings 0",
     "*.{css,scss,ts,tsx}": "prettier --write --list-different"
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "yarn@4.3.1"
 }
