@@ -32,7 +32,7 @@ const Dhti: React.FC = () => {
         <ul>
           {messages.map((message, idx) => (
             <div key={idx}>
-              <p>{message.summary}</p>
+              <p>{message.summary ?? message.detail}</p>
             </div>
           ))}
         </ul>
