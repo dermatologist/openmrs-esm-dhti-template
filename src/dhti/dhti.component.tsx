@@ -7,19 +7,22 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './dhti.scss';
 import handleBundle from '../hooks/useBundle';
+import { CDSHookCard } from '../models/card';
 
 const Dhti: React.FC = () => {
   const { t } = useTranslation();
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<CDSHookCard[]>([]);
   const [newMessage, setNewMessage] = useState('');
 
 
-  const handleSendMessage = () => handleBundle(newMessage)
-    .then((response) => {
-      setMessages([...messages, response.data]);
-      setNewMessage('');
-    })
-    .catch((error) => console.error('Error sending message:', error));
+  const handleSendMessage = () =>
+    handleBundle(newMessage)
+      .then((response) => {
+        const card = new CDSHookCard(response.data);
+        setMessages((prev) => [...prev, card]);
+        setNewMessage('');
+      })
+      .catch((error) => console.error('Error sending message:', error));
 
   return (
     <div className={styles.container}>
@@ -27,9 +30,9 @@ const Dhti: React.FC = () => {
 
       <div>
         <ul>
-          {messages.map((message) => (
-            <div>
-              <p dangerouslySetInnerHTML={{ __html: message.output }} />
+          {messages.map((message, idx) => (
+            <div key={idx}>
+              <p>{message.summary}</p>
             </div>
           ))}
         </ul>
