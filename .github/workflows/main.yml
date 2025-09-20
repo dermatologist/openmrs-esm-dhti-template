@@ -39,7 +39,7 @@ jobs:
             yarnCache-
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install
         env:
           CI: true
 
