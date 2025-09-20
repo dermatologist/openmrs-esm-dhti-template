@@ -13,12 +13,15 @@ module.exports = {
     '!**/e2e/**',
   ],
   transform: {
-    '^.+\\.tsx?$': ['@swc/jest'],
+    '^.+\\.(t|j)sx?$': ['@swc/jest'],
   },
-  transformIgnorePatterns: ['/node_modules/(?!@openmrs)'],
+  // Transform ESM modules from specific packages used in tests
+  transformIgnorePatterns: ['/node_modules/(?!(@openmrs|@testing-library)/)'],
   moduleNameMapper: {
     '@openmrs/esm-framework': '@openmrs/esm-framework/mock',
     '@openmrs/esm-utils': '@openmrs/esm-framework/mock',
+    '@openmrs/esm-react-utils': '@openmrs/esm-react-utils/mock',
+    '@openmrs/esm-extensions': '@openmrs/esm-extensions/mock',
     '\\.(s?css)$': 'identity-obj-proxy',
     '^lodash-es/(.*)$': 'lodash/$1',
     'lodash-es': 'lodash',
