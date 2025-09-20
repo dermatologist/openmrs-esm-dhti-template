@@ -23,29 +23,25 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Use cached Yarn cache
+      - name: Use cached node_modules
         uses: actions/cache@v4.2.4
         with:
-          path: |
-            .yarn/cache
-            .yarn/unplugged
-            .yarn/build-state.yml
-            .yarn/install-state.gz
-          key: yarnCache-${{ hashFiles('**/yarn.lock') }}
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/package-lock.lock') }}
           restore-keys: |
-            yarnCache-
+            nodeModules-
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm install --legacy-peer-deps
         env:
           CI: true
 
       - name: Test
-        run: yarn test
+        run: npm test
         env:
           CI: true
 
       - name: Build
-        run: yarn build
+        run: npm run build
         env:
           CI: true
