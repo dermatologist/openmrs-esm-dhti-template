@@ -23,25 +23,32 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Use cached node_modules
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use cached Yarn cache
         uses: actions/cache@v4.2.4
         with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/package-lock.lock') }}
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+            .yarn/install-state.gz
+          key: yarnCache-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            nodeModules-
+            yarnCache-
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: yarn install --immutable
         env:
           CI: true
 
       - name: Test
-        run: npm test
+        run: yarn test
         env:
           CI: true
 
       - name: Build
-        run: npm run build
+        run: yarn build
         env:
           CI: true
