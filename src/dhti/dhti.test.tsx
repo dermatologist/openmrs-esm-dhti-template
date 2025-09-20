@@ -21,9 +21,12 @@ it('displays the expected default text', () => {
   expect(screen.getByRole('heading', { name: /Submit to LangServe/i })).toBeInTheDocument();
 });
 
-it('submits message and renders card summary', async () => {
+it('submits message and renders card summary from output', async () => {
   mockHandleBundle.mockResolvedValueOnce({
-    data: { summary: 'High risk for opioid overdose', detail: 'Some detail' },
+    data: {
+      output: { summary: 'Paris', detail: null, indicator: null, source: null, links: null },
+      metadata: { run_id: 'abc', feedback_tokens: [] },
+    },
   });
 
   render(<Dhti />);
@@ -38,12 +41,15 @@ it('submits message and renders card summary', async () => {
     expect(mockHandleBundle).toHaveBeenCalledWith('hello world');
   });
 
-  expect(await screen.findByText('High risk for opioid overdose')).toBeInTheDocument();
+  expect(await screen.findByText('Paris')).toBeInTheDocument();
 });
 
-it('falls back to detail when summary is missing', async () => {
+it('falls back to detail when summary is missing in output', async () => {
   mockHandleBundle.mockResolvedValueOnce({
-    data: { detail: 'Only detail available' },
+    data: {
+      output: { summary: null, detail: 'Only detail available', indicator: null, source: null, links: null },
+      metadata: { run_id: 'def', feedback_tokens: [] },
+    },
   });
 
   render(<Dhti />);
@@ -57,9 +63,12 @@ it('falls back to detail when summary is missing', async () => {
   expect(await screen.findByText('Only detail available')).toBeInTheDocument();
 });
 
-it('clears the input after successful submit', async () => {
+it('clears the input after successful submit with output', async () => {
   mockHandleBundle.mockResolvedValueOnce({
-    data: { summary: 'Card A' },
+    data: {
+      output: { summary: 'Card A', detail: null, indicator: null, source: null, links: null },
+      metadata: { run_id: 'ghi', feedback_tokens: [] },
+    },
   });
 
   render(<Dhti />);

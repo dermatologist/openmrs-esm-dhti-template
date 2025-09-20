@@ -18,7 +18,7 @@ const Dhti: React.FC = () => {
   const handleSendMessage = () =>
     handleBundle(newMessage)
       .then((response) => {
-        const card = new CDSHookCard(response.data);
+        const card = new CDSHookCard(response.data.output);
         setMessages((prev) => [...prev, card]);
         setNewMessage('');
       })
