@@ -15,10 +15,10 @@ const handleBundle = (newMessage: string) => {
         input: request,
     }
 
-    return axios.post("/langserve/dhti_elixir_template/invoke", {
-        input: _request,
-        config: {},
-        kwargs: {},
+    return axios.post('/langserve/dhti_elixir_template/cds-services/dhti-service', {
+      input: _request,
+      config: {},
+      kwargs: {},
     });
 };
 
