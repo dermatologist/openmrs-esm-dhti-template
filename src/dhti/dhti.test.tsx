@@ -24,7 +24,9 @@ it('displays the expected default text', () => {
 it('submits message and renders card summary from output', async () => {
   mockHandleBundle.mockResolvedValueOnce({
     data: {
-      output: { summary: 'Paris', detail: null, indicator: null, source: null, links: null },
+      cards: [
+        { summary: 'Paris', detail: null, indicator: null, source: null, links: null },
+      ],
       metadata: { run_id: 'abc', feedback_tokens: [] },
     },
   });
@@ -47,7 +49,9 @@ it('submits message and renders card summary from output', async () => {
 it('falls back to detail when summary is missing in output', async () => {
   mockHandleBundle.mockResolvedValueOnce({
     data: {
-      output: { summary: null, detail: 'Only detail available', indicator: null, source: null, links: null },
+      cards: [
+        { summary: null, detail: 'Only detail available', indicator: null, source: null, links: null },
+      ],
       metadata: { run_id: 'def', feedback_tokens: [] },
     },
   });
@@ -66,7 +70,9 @@ it('falls back to detail when summary is missing in output', async () => {
 it('clears the input after successful submit with output', async () => {
   mockHandleBundle.mockResolvedValueOnce({
     data: {
-      output: { summary: 'Card A', detail: null, indicator: null, source: null, links: null },
+      cards: [
+        { summary: 'Card A', detail: null, indicator: null, source: null, links: null },
+      ],
       metadata: { run_id: 'ghi', feedback_tokens: [] },
     },
   });

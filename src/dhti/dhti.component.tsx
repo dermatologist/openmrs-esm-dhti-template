@@ -18,8 +18,14 @@ const Dhti: React.FC = () => {
   const handleSendMessage = () =>
     handleBundle(newMessage)
       .then((response) => {
-        const card = new CDSHookCard(response.data.output);
-        setMessages((prev) => [...prev, card]);
+        const cards = response.data.cards;
+        if (Array.isArray(cards) && cards.length > 0) {
+          const lastCard = cards[cards.length - 1];
+          const card = new CDSHookCard(lastCard);
+          setMessages([card]);
+        } else {
+          setMessages([]);
+        }
         setNewMessage('');
       })
       .catch((error) => console.error('Error sending message:', error));
