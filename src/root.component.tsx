@@ -10,7 +10,6 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Dhti from './dhti/dhti.component';
 import styles from './root.scss';
 import { ConversationContainer } from './dhti/ConversationContainer';
 const Root: React.FC = () => {
