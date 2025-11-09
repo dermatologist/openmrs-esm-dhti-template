@@ -23,8 +23,8 @@ import { fhirBaseUrl, openmrsFetch } from '@openmrs/esm-framework';
  */
 
 export function usePatient(query: string) {
-  // If query has a number then it is an ID
-  const isId = /^\d+$/.test(query);
+  // If query has a number anywhere in it, treat it as an identifier search
+  const isId = /\d/.test(query);
   let url = null;
   if (query && query.trim()) {
     if (isId) {
@@ -36,16 +36,21 @@ export function usePatient(query: string) {
   const { data, error, isLoading } = useSWR<any, Error>(url, openmrsFetch);
 
   let patient = null;
-  if (isId) {
-    // FHIR /Patient/{id} returns the patient directly
-    if (data && data.resourceType === 'Patient') {
-      patient = data;
-    }
-  } else {
-    if (data && data.data && Array.isArray(data.data.entry) && data.data.entry.length > 0) {
-      patient = data.data.entry[0].resource;
-    }
+  // if (isId) {
+  //   // FHIR /Patient/{id} returns the patient directly
+  //   if (data && data.resourceType === 'Patient') {
+  //     patient = data;
+  //   }
+  // } else {
+  //   if (data && data.data && Array.isArray(data.data.entry) && data.data.entry.length > 0) {
+  //     patient = data.data.entry[0].resource;
+  //   }
+  // }
+
+  if (data && data.data && Array.isArray(data.data.entry) && data.data.entry.length > 0) {
+    patient = data.data.entry[0].resource;
   }
+  
   return {
     patient,
     error: error,
