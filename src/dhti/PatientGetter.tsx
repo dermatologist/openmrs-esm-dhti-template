@@ -9,12 +9,16 @@
  * made. This component renders a loading indicator while `isLoading` is true.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, InlineLoading, Tile } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 import { usePatient } from '../hooks/usePatient';
 
-function PatientGetter() {
+type PatientGetterProps = {
+    onPatientIdChange?: (patientId: string) => void;
+};
+
+function PatientGetter({ onPatientIdChange }: PatientGetterProps) {
     const { t } = useTranslation();
     const [inputValue, setInputValue] = useState('');
     const [patientName, setPatientName] = useState('');
@@ -24,6 +28,14 @@ function PatientGetter() {
         e.preventDefault();
         setPatientName(inputValue.trim());
     };
+
+    // propagate patient id upwards when patient changes
+    useEffect(() => {
+        if (onPatientIdChange) {
+            const id = (patient as any)?.id || '';
+            onPatientIdChange(id);
+        }
+    }, [patient, onPatientIdChange]);
 
     return (
         <div

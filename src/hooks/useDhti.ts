@@ -4,10 +4,7 @@ import { CDSHookRequest } from '../models/request';
 import { CDSHookCard } from '../models/card';
 
 interface UseDhtiReturn {
-  submitMessage: (
-    newMessage: string,
-    service?: string
-  ) => Promise<CDSHookCard | null>;
+  submitMessage: (newMessage: string, service?: string, patientId?: string) => Promise<CDSHookCard | null>;
   loading: boolean;
   error: string | null;
 }
@@ -22,14 +19,15 @@ export const useDhti = (): UseDhtiReturn => {
 
   const submitMessage = async (
     newMessage: string,
-    service: string = 'dhti_elixir_template'
+    service: string = 'dhti_elixir_template',
+    patientId?: string,
   ): Promise<CDSHookCard | null> => {
     setLoading(true);
     setError(null);
 
     try {
       const request = new CDSHookRequest({
-        context: { input: newMessage },
+        context: { input: newMessage, patientId: patientId || undefined },
       });
 
       // TODO: Investigate why nested input is required
@@ -37,21 +35,14 @@ export const useDhti = (): UseDhtiReturn => {
         input: request,
       };
 
-      const response = await axios.post(
-        `/langserve/${service}/cds-services/dhti-service`,
-        {
-          input: _request,
-          config: {},
-          kwargs: {},
-        }
-      );
+      const response = await axios.post(`/langserve/${service}/cds-services/dhti-service`, {
+        input: _request,
+        config: {},
+        kwargs: {},
+      });
 
       // Assuming the response contains a card or cards
-      if (
-        response.data &&
-        response.data.cards &&
-        response.data.cards.length > 0
-      ) {
+      if (response.data && response.data.cards && response.data.cards.length > 0) {
         return CDSHookCard.from(response.data.cards[0]);
       } else if (response.data && response.data.summary) {
         // Handle case where response is directly a card (must have summary property)
@@ -60,10 +51,7 @@ export const useDhti = (): UseDhtiReturn => {
 
       return null;
     } catch (err: any) {
-      const errorMessage =
-        err.response?.data?.message ||
-        err.message ||
-        'Failed to submit message';
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to submit message';
       setError(errorMessage);
       return null;
     } finally {

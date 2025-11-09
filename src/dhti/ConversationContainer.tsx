@@ -11,6 +11,7 @@ import PatientGetter from './PatientGetter';
 export const ConversationContainer: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [service, setService] = useState('dhti_elixir_template');
+  const [patientId, setPatientId] = useState<string>('');
   const { submitMessage, loading, error } = useDhti();
 
   const handleSubmit = async (messageContent: string) => {
@@ -23,7 +24,7 @@ export const ConversationContainer: React.FC = () => {
     setMessages((prev) => [...prev, userMessage]);
 
     // Submit to service
-    const card = await submitMessage(messageContent, service);
+    const card = await submitMessage(messageContent, service, patientId);
 
     // Add system response
     const systemMessage: Message = {
@@ -52,7 +53,18 @@ export const ConversationContainer: React.FC = () => {
       }}
     >
       {/* PatientGetter demo component */}
-      <PatientGetter />
+      <PatientGetter onPatientIdChange={setPatientId} />
+      {/* Display selected patient ID */}
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ display: 'block', fontSize: '14px', marginBottom: '4px' }}>Patient ID</label>
+        <input
+          type="text"
+          value={patientId}
+          readOnly
+          placeholder="No patient selected"
+          style={{ width: '100%', padding: '8px', borderRadius: '3px', border: '1px solid #ccc', fontSize: '14px' }}
+        />
+      </div>
 
       <h2 style={{ marginTop: 0, marginBottom: '20px' }}>
         Healthcare Conversational Interface

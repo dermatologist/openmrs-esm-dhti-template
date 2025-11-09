@@ -23,8 +23,8 @@ import { fhirBaseUrl, openmrsFetch } from '@openmrs/esm-framework';
  */
 
 export function usePatient(query: string) {
-  // If query looks like a UUID (OpenMRS IDs are 36 chars with dashes), search by id, else by name
-  const isId = /^[0-9a-fA-F-]{36}$/.test(query?.trim());
+  // If query has a number then it is an ID
+  const isId = /^\d+$/.test(query);
   let url = null;
   if (query && query.trim()) {
     if (isId) {
