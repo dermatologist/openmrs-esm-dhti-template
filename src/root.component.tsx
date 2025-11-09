@@ -12,7 +12,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Dhti from './dhti/dhti.component';
 import styles from './root.scss';
-
+import { ConversationContainer } from './dhti/ConversationContainer';
 const Root: React.FC = () => {
   const { t } = useTranslation();
 
@@ -22,7 +22,8 @@ const Root: React.FC = () => {
       <p className={styles.explainer}>
         {t('explainer', 'The following examples demonstrate some key features of the Dhti - O3 framework')}.
       </p>
-      <Dhti />
+      <ConversationContainer />
+
     </div>
   );
 };
