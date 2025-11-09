@@ -44,9 +44,9 @@ function PatientGetter() {
                     type="text"
                     value={inputValue}
                     onChange={e => setInputValue(e.target.value)}
-                    placeholder={t('patientName', 'Patient name')}
+                    placeholder={t('patientName', 'Patient name or ID')}
                     style={{ flex: 1, padding: '8px', fontSize: '16px', borderRadius: '3px', border: '1px solid #ccc' }}
-                    aria-label={t('patientName', 'Patient name')}
+                    aria-label={t('patientName', 'Patient name or ID')}
                 />
                 <Button type="submit" disabled={!inputValue || isLoading}>
                     {t('search', 'Search')}

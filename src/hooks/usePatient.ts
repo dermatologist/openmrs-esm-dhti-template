@@ -23,17 +23,28 @@ import { fhirBaseUrl, openmrsFetch } from '@openmrs/esm-framework';
  */
 
 export function usePatient(query: string) {
-  const url = `${fhirBaseUrl}/Patient?name=${query}&_summary=data`;
-  const { data, error, isLoading } = useSWR<
-    {
-      data: { entry: Array<{ resource: fhir.Patient }> };
-    },
-    Error
-  >(query ? url : null, openmrsFetch);
+  // If query looks like a UUID (OpenMRS IDs are 36 chars with dashes), search by id, else by name
+  const isId = /^[0-9a-fA-F-]{36}$/.test(query?.trim());
+  let url = null;
+  if (query && query.trim()) {
+    if (isId) {
+      url = `${fhirBaseUrl}/Patient?identifier=${encodeURIComponent(query.trim())}&_summary=data`;
+    } else {
+      url = `${fhirBaseUrl}/Patient?name=${encodeURIComponent(query.trim())}&_summary=data`;
+    }
+  }
+  const { data, error, isLoading } = useSWR<any, Error>(url, openmrsFetch);
 
   let patient = null;
-  if (data && data.data && Array.isArray(data.data.entry) && data.data.entry.length > 0) {
-    patient = data.data.entry[0].resource;
+  if (isId) {
+    // FHIR /Patient/{id} returns the patient directly
+    if (data && data.resourceType === 'Patient') {
+      patient = data;
+    }
+  } else {
+    if (data && data.data && Array.isArray(data.data.entry) && data.data.entry.length > 0) {
+      patient = data.data.entry[0].resource;
+    }
   }
   return {
     patient,
