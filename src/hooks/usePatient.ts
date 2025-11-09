@@ -31,8 +31,12 @@ export function usePatient(query: string) {
     Error
   >(query ? url : null, openmrsFetch);
 
+  let patient = null;
+  if (data && data.data && Array.isArray(data.data.entry) && data.data.entry.length > 0) {
+    patient = data.data.entry[0].resource;
+  }
   return {
-    patient: data ? data?.data?.entry[0].resource : null,
+    patient,
     error: error,
     isLoading,
   };

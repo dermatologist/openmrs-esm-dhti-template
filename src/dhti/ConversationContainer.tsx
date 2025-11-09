@@ -3,6 +3,7 @@ import { ConversationDisplay, Message } from './ConversationDisplay';
 import { MessageInput } from './MessageInput';
 import { ServiceInput } from './ServiceInput';
 import { useDhti } from '../hooks/useDhti';
+import PatientGetter from './PatientGetter';
 
 /**
  * Top-level container component for the conversational UI
@@ -50,6 +51,9 @@ export const ConversationContainer: React.FC = () => {
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
       }}
     >
+      {/* PatientGetter demo component */}
+      <PatientGetter />
+
       <h2 style={{ marginTop: 0, marginBottom: '20px' }}>
         Healthcare Conversational Interface
       </h2>
