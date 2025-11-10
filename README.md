@@ -8,6 +8,7 @@
   <img src="https://github.com/dermatologist/openmrs-esm-dhti-template/blob/develop/notes/conch.jpg" />
 </p>
 
+This template is a simple but functional EMR chatbot too!* 👉 [Try it out today!](https://github.com/dermatologist/dhti/blob/feature/fix-copy-1/README.md#try-it-out)
 
 ## Running this code
 
