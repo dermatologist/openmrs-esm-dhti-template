@@ -1,8 +1,13 @@
 
 # DHTI Conch Template
 
-* [DHTI](https://github.com/dermatologist/dhti) Conch template
-* WIP
+* [DHTI](https://github.com/dermatologist/dhti) Conch template & **a simple EMR chatbot.**
+
+
+<p align="center">
+  <img src="https://github.com/dermatologist/openmrs-esm-dhti-template/blob/develop/notes/conch.jpg" />
+</p>
+
 
 ## Running this code
 
