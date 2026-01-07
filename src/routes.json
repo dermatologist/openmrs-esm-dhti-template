@@ -6,19 +6,15 @@
   },
   "extensions": [
     {
-      "component": "DhtiTemplateLeftPanelLink",
       "name": "dhti-template-home-left-panel-link",
-      "slot": "homepage-dashboard-slot",
-      "meta": {
-        "name": "dhti-template",
-        "title": "DHTI Template",
-        "slot": "dhti-template-app-slot"
-      }
-    },
+      "component": "DhtiTemplateLeftPanelLink",
+      "slot": "homepage-dashboard-slot"
+    }
+  ],
+  "pages": [
     {
       "component": "root",
-      "name": "dhti-template-root",
-      "slot": "dhti-template-app-slot"
+      "route": "dhti-template"
     }
   ]
 }
