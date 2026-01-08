@@ -35,7 +35,7 @@ Use this skill when you need to:
 
    <!-- Feature Request Start -->
    <!-- Please replace this section with the actual feature request. see examples/conch-sample-request.md -->
-   <Please replace this section with the actual feature request. See examples/conch-sample-request.md>
+   [Please replace this section with the actual feature request. See examples/conch-sample-request.md]
    <!-- Feature Request End -->
 
 4. **Decide on a simple but unique name** starting with `openmrs-esm-dhti-` for your microfrontend. This name will be used for the project directory, GitHub repository, and npm package. Ensure that the name is not already in use by checking the OpenMRS microfrontends list and npm registry.
@@ -74,7 +74,7 @@ Use this skill when you need to:
      - **Translation Support:** An `importTranslation` constant is used to tell the app shell where to find translation files, enabling internationalization.
      - Lifecycle functions may be synchronous (`getSyncLifecycle`) or asynchronous (`getAsyncLifecycle`) depending on whether the component requires async operations like data fetching.
 
-9. **Reference the component names in your `src/routes.json` file** to define routes or extensions. Read how the extension system works in OpenMRS micro-frontend: <https://r.jina.ai/https://o3-docs.openmrs.org/docs/extension-system>. Update `src/routes.json` accordingly.
+9. **Reference the component names in your `src/routes.json` file** to define routes or extensions. Read how the extension system works in OpenMRS micro-frontend: <https://o3-docs.openmrs.org/docs/extension-system>. Update `src/routes.json` accordingly.
 
 ### Patient and Encounter Data in Components
 
@@ -121,7 +121,7 @@ Use this skill when you need to:
 ### Implementation
 
 12. **Implement the feature:**
-    - Start implementing the feature based on your plans. Follow best practices for React and OpenMRS frontend-module development. When you are in doubt refer to the implementation guide here: <https://r.jina.ai/https://o3-docs.openmrs.org/docs/frontend-modules/overview>. Test your code frequently to ensure it works as expected. Start with the renamed `root.component.tsx` file and build out from there. Please note that you may have components not included in the root component, but used in extensions or pages.
+    - Start implementing the feature based on your plans. Follow best practices for React and OpenMRS frontend-module development. When you are in doubt refer to the implementation guide here: <https://o3-docs.openmrs.org/docs/frontend-modules/overview>. Test your code frequently to ensure it works as expected. Start with the renamed `root.component.tsx` file and build out from there. Please note that you may have components not included in the root component, but used in extensions or pages.
 
 ### Testing
 
