@@ -10,6 +10,21 @@
 
 This template is a simple but functional EMR chatbot too!* 👉 [Try it out today!](https://github.com/dermatologist/dhti/blob/feature/fix-copy-1/README.md#try-it-out)
 
+## AI Agent Skills
+
+This repository includes AI agent skills to help coding assistants generate new OpenMRS microfrontends from this template. These skills provide structured guidance for:
+
+- Setting up a development environment
+- Scaffolding new microfrontend projects  
+- Implementing GenAI-powered features
+- Following OpenMRS best practices
+
+**Location:** `.github/skills/` (preferred) and `.claude/skills/` (legacy support)
+
+**Usage:** When working with AI coding assistants (GitHub Copilot, Claude, etc.), reference the OpenMRS Conch Agent Skill for automated project scaffolding and implementation.
+
+See [.github/skills/README.md](.github/skills/README.md) for detailed documentation and examples.
+
 ## Running this code
 
 ```sh
