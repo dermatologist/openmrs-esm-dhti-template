@@ -8,7 +8,7 @@
       {
         "component": "conversationContainer",
         "name": "conversation-container",
-        "slot": "patient-banner-bottom-slot"
+        "slot": "patient-chart-summary-dashboard-slot"
       },
     {
       "name": "Red box",
