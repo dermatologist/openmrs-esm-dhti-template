@@ -13,21 +13,18 @@ module.exports = {
     '!**/e2e/**',
   ],
   transform: {
-    '^.+\\.(t|j)sx?$': ['@swc/jest'],
+    '^.+\\.[jt]sx?$': ['@swc/jest'],
   },
-  // Transform ESM modules from specific packages used in tests
-  transformIgnorePatterns: ['/node_modules/(?!(@openmrs|@testing-library)/)'],
+  transformIgnorePatterns: ['/node_modules/(?!@openmrs|.+\\.pnp\\.[^\\/]+$)'],
   moduleNameMapper: {
     '@openmrs/esm-framework': '@openmrs/esm-framework/mock',
-    '@openmrs/esm-utils': '@openmrs/esm-framework/mock',
-    '@openmrs/esm-react-utils': '@openmrs/esm-react-utils/mock',
-    '@openmrs/esm-extensions': '@openmrs/esm-extensions/mock',
     '\\.(s?css)$': 'identity-obj-proxy',
     '^lodash-es/(.*)$': 'lodash/$1',
     'lodash-es': 'lodash',
     '^dexie$': require.resolve('dexie'),
+    '^dayjs$': require.resolve('dayjs'),
   },
-  setupFilesAfterEnv: ['<rootDir>/src/setup-tests.ts'],
+  setupFilesAfterEnv: [path.resolve(__dirname, 'tools', 'setup-tests.ts')],
   testPathIgnorePatterns: [path.resolve(__dirname, 'e2e')],
   testEnvironment: 'jsdom',
   testEnvironmentOptions: {
