@@ -26,6 +26,16 @@ export const configSchema = {
     _default: false,
     _description: 'Whether to use a casual greeting (or a formal one).',
   },
+  dhtiTitle: {
+    _type: Type.String,
+    _default: 'DHTI Template Widget',
+    _description: 'Title to display for the DHTI Template Widget',
+  },
+  dhtiRoute: {
+    _type: Type.String,
+    _default: 'http://localhost:8001/langserve/dhti_elixir_template/cds-services/dhti-service',
+    _description: 'Route for the DHTI Template Service',
+  },
   whoToGreet: {
     _type: Type.Array,
     _default: ['World'],

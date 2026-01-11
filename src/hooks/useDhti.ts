@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { CDSHookRequest } from '../models/request';
 import { CDSHookCard } from '../models/card';
+import { useConfig, openmrsFetch, fhirBaseUrl } from '@openmrs/esm-framework';
 
 interface UseDhtiReturn {
   submitMessage: (newMessage: string, service?: string, patientId?: string) => Promise<CDSHookCard | null>;
@@ -16,6 +17,7 @@ interface UseDhtiReturn {
 export const useDhti = (): UseDhtiReturn => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const config = useConfig();
 
   const submitMessage = async (
     newMessage: string,
@@ -35,7 +37,7 @@ export const useDhti = (): UseDhtiReturn => {
         input: request,
       };
 
-      const response = await axios.post(`/langserve/${service}/cds-services/dhti-service`, {
+      const response = await axios.post(`${config.dhtiRoute}`, {
         input: _request,
         config: {},
         kwargs: {},
