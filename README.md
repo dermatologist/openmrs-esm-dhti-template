@@ -1,6 +1,8 @@
 
 # DHTI Conch Template
 
+## Deprecated. Use [the new monorepo instead.](https://github.com/dermatologist/openmrs-esm-dhti)
+
 * [DHTI](https://github.com/dermatologist/dhti) Conch template & **a simple EMR chatbot.**
 
 
